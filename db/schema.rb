@@ -11,13 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131213071151) do
+ActiveRecord::Schema.define(version: 20131213083606) do
 
   create_table "lots", force: true do |t|
     t.decimal  "step_price", precision: 8, scale: 2
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "product_id"
   end
+
+  add_index "lots", ["product_id"], name: "index_lots_on_product_id"
 
   create_table "products", force: true do |t|
     t.string   "title"
