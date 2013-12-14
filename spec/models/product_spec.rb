@@ -1,9 +1,7 @@
 require 'spec_helper'
 
 describe Product do
-  it { should respond_to(:title) }
   it { should respond_to(:description) }
-  it { should respond_to(:price) }
 
   it { should validate_presence_of(:title) }
   it { should validate_presence_of(:price) }
