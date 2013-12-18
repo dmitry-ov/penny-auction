@@ -35,7 +35,11 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+gem 'pry-rails', :group => :development
+
 group :test, :development do
+    gem 'zeus'
+
     gem 'rspec-rails'
     gem 'shoulda-matchers'
 end
