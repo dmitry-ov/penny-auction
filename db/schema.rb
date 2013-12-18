@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131213083606) do
+ActiveRecord::Schema.define(version: 20131218073616) do
 
   create_table "lots", force: true do |t|
     t.decimal  "step_price", precision: 8, scale: 2
@@ -24,8 +24,8 @@ ActiveRecord::Schema.define(version: 20131213083606) do
 
   create_table "products", force: true do |t|
     t.string   "title"
-    t.string   "description"
-    t.decimal  "price",       precision: 8, scale: 2
+    t.text     "description", limit: 255
+    t.decimal  "price",                   precision: 8, scale: 2
     t.datetime "created_at"
     t.datetime "updated_at"
   end
