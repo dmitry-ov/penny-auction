@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131218073616) do
+ActiveRecord::Schema.define(version: 20131218083857) do
+
+  create_table "categories", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "ancestry"
+    t.string   "name"
+  end
 
   create_table "lots", force: true do |t|
     t.decimal  "step_price", precision: 8, scale: 2
