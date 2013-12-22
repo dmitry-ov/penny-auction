@@ -1,4 +1,5 @@
-= form_for [@admin_product] do |f| #:admin - not supported
+= form_for [:admin, @admin_product] do |f| #:admin - not supported
+
   - if @admin_product.errors.any?
     #error_explanation
       h2 = "#{pluralize(@admin_product.errors.count, "error")} prohibited this admin_product from being saved:"

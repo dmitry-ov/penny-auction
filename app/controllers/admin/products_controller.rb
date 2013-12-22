@@ -14,7 +14,7 @@ class Admin::ProductsController < Admin::BaseController
 
   # GET /admin/products/new
   def new
-    @admin_product = Admin::Product.new
+    @admin_product = Product.new
   end
 
   # GET /admin/products/1/edit

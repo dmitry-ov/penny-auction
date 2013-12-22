@@ -6,11 +6,11 @@ table
     th
     th
 
-  /- @sites.each do |site|
+  - @products.each do |product|
     tr
-      td = link_to 'Show', site
-      td = link_to 'Edit', edit_site_path(site)
-      td = link_to 'Destroy', site, data: {:confirm => 'Are you sure?'}, :method => :delete
+      /td = link_to 'Show', site
+      /td = link_to 'Edit', edit_site_path(site)
+      /td = link_to 'Destroy', site, data: {:confirm => 'Are you sure?'}, :method => :delete
 
 br
 
