@@ -2,13 +2,11 @@ class Admin::ProductsController < Admin::BaseController
   before_action :set_admin_product, only: [:show, :edit, :update, :destroy]
 
   # GET /admin/products
-  # GET /admin/products.json
   def index
     @admin_products = Product.all
   end
 
   # GET /admin/products/1
-  # GET /admin/products/1.json
   def show
   end
 
@@ -24,7 +22,7 @@ class Admin::ProductsController < Admin::BaseController
   # POST /admin/products
   # POST /admin/products.json
   def create
-    @admin_product = Admin::Product.new(admin_product_params)
+    @admin_product = Product.new(admin_product_params)
 
     respond_to do |format|
       if @admin_product.save
