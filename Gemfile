@@ -6,6 +6,9 @@ gem 'therubyracer'
 gem 'execjs'
 gem 'ancestry'
 
+gem 'devise'
+gem 'slim-rails'
+
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
