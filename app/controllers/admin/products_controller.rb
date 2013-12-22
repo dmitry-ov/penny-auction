@@ -4,7 +4,7 @@ class Admin::ProductsController < Admin::BaseController
   # GET /admin/products
   # GET /admin/products.json
   def index
-    @admin_products = Admin::Product.all
+    @admin_products = Product.all
   end
 
   # GET /admin/products/1
