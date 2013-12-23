@@ -1,17 +1,20 @@
 h1 Listing admin_products
 
-table
+table border = 1
   tr
-    th
-    th
-    th
+    th title
+    th descriptions
+    th price
 
-  -@admin_products.each do |admin_product|
-
+  -@admin_products.each do |product|
     tr
-      td = link_to 'Show', admin_product
-      td = link_to 'Edit', edit_admin_product_path(admin_product)
-      td = link_to 'Destroy', admin_product, data: {:confirm => 'Are you sure?'}, :method => :delete
+      td = product.title
+      td = product.description
+      td = product.price
+
+      td = link_to 'Show', admin_product_path(product)
+      td = link_to 'Edit', edit_admin_product_path(product)
+      td = link_to 'Destroy', admin_product_path(product), data: {:confirm => 'Are you sure?'}, :method => :delete
 
 br
 
