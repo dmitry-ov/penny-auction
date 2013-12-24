@@ -13,6 +13,7 @@ class Admin::CategoriesController < Admin::BaseController
   # GET /admin/products/new
   def new
     @admin_category = Category.new
+    @admin_categories = Category.all
   end
 
   # GET /admin/products/1/edit

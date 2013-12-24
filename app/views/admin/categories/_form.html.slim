@@ -9,7 +9,15 @@
   .form-group
     = f.label :name
     = f.text_field :name, :class => "form-control"
+  .form-control
+    = f.label "Parent"
+    select
+      -@admin_categories.each do |c|
+        option = c.name
 
+
+    /= f.label "Родитель"
+    /= f.text_field :ancestry, :class => "form-control"
 
   .actions
     = f.submit 'Save'
