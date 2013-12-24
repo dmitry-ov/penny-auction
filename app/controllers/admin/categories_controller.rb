@@ -1,5 +1,6 @@
 class Admin::CategoriesController < Admin::BaseController
   before_action :set_admin_category, only: [:show, :edit, :update, :destroy]
+  before_action :set_admin_categories, only: [:new, :edit, :show]
 
   # GET /admin/products
   def index
@@ -13,7 +14,6 @@ class Admin::CategoriesController < Admin::BaseController
   # GET /admin/products/new
   def new
     @admin_category = Category.new
-    @admin_categories = Category.all
   end
 
   # GET /admin/products/1/edit
@@ -63,12 +63,17 @@ class Admin::CategoriesController < Admin::BaseController
     # Use callbacks to share common setup or constraints between actions.
     def set_admin_category
       @admin_category = Category.find(params[:id])
+      id = @admin_category.ancestry
+      @parent_name = Category.find(id).name unless id == nil
+    end
+
+    def set_admin_categories
+      @admin_categories = Category.all
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_category_params
-      #params[:admin_product]
+      params[:category][:ancestry] = nil if params[:category][:ancestry] == ""
       params[:category].permit(:name, :ancestry)
-      #params[:admin_product].permit(:title, :description, :price)
     end
 end
