@@ -74,6 +74,6 @@ class Admin::CategoriesController < Admin::BaseController
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_category_params
       params[:category][:ancestry] = nil if params[:category][:ancestry] == ""
-      params[:category].permit(:name, :ancestry)
+      params[:category].permit(:name, :ancestry, :avatar)
     end
 end

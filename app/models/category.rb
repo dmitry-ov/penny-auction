@@ -1,5 +1,8 @@
 class Category < ActiveRecord::Base
- has_ancestry
+  require 'carrierwave/orm/activerecord'
+  has_ancestry
+
+ mount_uploader :avatar, AvatarUploader
 
  has_many :products
  

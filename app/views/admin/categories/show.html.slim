@@ -1,10 +1,15 @@
 p#notice = notice
 
 p = @admin_category.name
-p = @parent_name
+
+-unless @parent_name == nil
+  p = "Parent"
+  p = @parent_name
+
+-unless @admin_category.avatar == nil
+  img src =  @admin_category.avatar
 
 br
-
 
 = link_to 'Edit', edit_admin_category_path(@admin_category)
 '|

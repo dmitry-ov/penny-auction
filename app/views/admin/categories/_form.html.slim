@@ -5,13 +5,17 @@
       ul
         - @admin_category.errors.full_messages.each do |message|
           li = message
-
   .form-group
     = f.label :name
     = f.text_field :name, :class => "form-control"
   .form-group
     = f.label :ancestry
-    = f.select :ancestry, @admin_categories.map{|c| [c.name, c.id] }, :include_blank => true
+    = f.select :ancestry, (@admin_categories.map{|c| [c.name, c.id] } unless (@admin_categories == nil)), {:include_blank => true}
+  .form-group
+    = f.label :avatar
+    = f.file_field :avatar
+    = f.hidden_field :avatar_cache
+
   .actions
     = f.submit 'Save'
 
