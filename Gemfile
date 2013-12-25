@@ -10,6 +10,7 @@ gem 'devise'
 gem 'slim-rails'
 
 gem 'twitter-bootstrap-rails'
+gem 'carrierwave'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
