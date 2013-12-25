@@ -15,6 +15,8 @@
     = f.label :avatar
     = f.file_field :avatar
     = f.hidden_field :avatar_cache
+  -unless @admin_category.avatar == nil
+    img src =  @admin_category.avatar
 
   .actions
     = f.submit 'Save'
