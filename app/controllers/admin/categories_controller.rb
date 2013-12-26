@@ -1,6 +1,6 @@
 class Admin::CategoriesController < Admin::BaseController
   before_action :set_admin_category, only: [:show, :edit, :update, :destroy]
-  before_action :set_admin_categories, only: [:new, :edit, :show]
+  before_action :set_admin_categories, only: [:new, :create, :edit, :show]
 
   # GET /admin/products
   def index
@@ -74,6 +74,6 @@ class Admin::CategoriesController < Admin::BaseController
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_category_params
       params[:category][:ancestry] = nil if params[:category][:ancestry] == ""
-      params[:category].permit(:name, :ancestry, :avatar)
+      params[:category].permit(:name, :ancestry, :avatar, :avatar_cache)
     end
 end
