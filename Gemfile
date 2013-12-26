@@ -10,6 +10,8 @@ gem 'devise'
 gem 'slim-rails'
 
 gem 'twitter-bootstrap-rails'
+gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
+
 gem 'carrierwave'
 
 # Use sqlite3 as the database for Active Record
