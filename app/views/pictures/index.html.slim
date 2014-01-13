@@ -1,6 +1,6 @@
 h1 Listing pictures
 
-table
+table border = 1
   tr
     th
     th
@@ -8,6 +8,7 @@ table
 
   - @pictures.each do |picture|
     tr
+      td <img src = #{picture.avatar}>
       td = link_to 'Show', picture
       td = link_to 'Edit', edit_picture_path(picture)
       td = link_to 'Destroy', picture, data: {:confirm => 'Are you sure?'}, :method => :delete
