@@ -15,8 +15,11 @@
   .form-group
     = f.label :price
     = f.text_field :price, :class => "form-control"
-  /.form-group
-  /  = f.file_field :image
+  .form-group
+    = f.label :avatar
+    = f.file_field :avatar
+    = f.hidden_field :avatar_cache
+
   .actions
     = f.submit 'Save'
 
