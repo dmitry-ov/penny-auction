@@ -12,8 +12,8 @@ class Admin::BaseController < ApplicationController
   private
     def require_admin
       unless current_user.admin?
-        redirect_to root_path # halts request cycle
         flash[:notice] = "У вас нет прав доступа к этой странице"
+        redirect_to root_path # halts request cycle
       end
     end
 end

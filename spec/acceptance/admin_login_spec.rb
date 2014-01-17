@@ -38,7 +38,6 @@ feature "Admin logging in to admin area", %q{
     User.create!(email: 'user@test.com', password: '12345678', password_confirmation: '12345678', admin: false)
 
     sign_in_with 'user@test.com', '12345678'
-    #save_and_open_page
     page.should have_content "У вас нет прав доступа к этой странице"
   end
 end
