@@ -4,7 +4,6 @@ class Admin::BaseController < ApplicationController
   #before_action :authenticate_user!
   #before_action :require_admin
 
-
   before_action :authenticate_user!
   before_action :require_admin
 
@@ -12,9 +11,9 @@ class Admin::BaseController < ApplicationController
 
   private
     def require_admin
-      unless current_user.is_admin
-        flash[:error] = "You must be logged in as admin to access this section"
+      unless current_user.admin?
         redirect_to root_path # halts request cycle
+        flash[:notice] = "У вас нет прав доступа к этой странице"
       end
     end
 end
