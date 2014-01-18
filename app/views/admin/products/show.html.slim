@@ -4,8 +4,8 @@ p = @admin_product.title
 p = @admin_product.description
 p = @admin_product.price
 
--unless @admin_product.avatar == nil
-  img src = @admin_product.avatar
+- @admin_product.pictures.each do |picture|
+  = image_tag picture.avatar.url
 
 
 br

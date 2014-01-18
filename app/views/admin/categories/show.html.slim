@@ -2,12 +2,11 @@ p#notice = notice
 
 p = @admin_category.name
 
--unless @parent_name == nil
+-unless @parent_name.blank?
   p = "Parent"
   p = @parent_name
 
--unless @admin_category.avatar == nil
-  img src =  @admin_category.avatar
+p = image_tag @admin_category.picture.avatar.url
 
 br
 

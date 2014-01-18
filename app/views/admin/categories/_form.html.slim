@@ -12,11 +12,11 @@
     = f.label :ancestry
     = f.select :ancestry, (@admin_categories.map{|c| [c.name, c.id] } unless (@admin_categories == nil)), {:include_blank => true}
   .form-group
-    = f.label :avatar
-    = f.file_field :avatar
-    = f.hidden_field :avatar_cache
-  -unless @admin_category.avatar == nil
-    img src =  @admin_category.avatar
+    = f.fields_for :picture do |picture|
+      = picture.label :avatar
+      = picture.file_field :avatar
+
+
 
   .actions
     = f.submit 'Save'

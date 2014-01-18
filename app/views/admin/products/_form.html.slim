@@ -1,4 +1,5 @@
-= form_for [:admin, @admin_product] do |f|
+/= form_for [:admin, @admin_product] do |f|
+= nested_form_for [:admin, @admin_product] do |f|
   - if @admin_product.errors.any?
     #error_explanation
       h2 = "#{pluralize(@admin_product.errors.count, "error")} prohibited this product from being saved:"
@@ -15,16 +16,21 @@
   .form-group
     = f.label :price
     = f.text_field :price, :class => "form-control"
+  /.form-group
+  /  = f.label :avatar
+  /  = f.file_field :avatar
+  /  = f.hidden_field :avatar_cache
+  /  -unless @admin_product.avatar == nil
+  /    img src = @admin_product.avatar
   .form-group
-    = f.label :avatar
-    = f.file_field :avatar
-    = f.hidden_field :avatar_cache
-    -unless @admin_product.avatar == nil
-      img src = @admin_product.avatar
-  .form-group
-    nested_form_for @admin_product.pictures do |picture_form|
-      = picture_form.label :avatar
-      = picture_form.text_field :avatar
+    = f.fields_for :pictures do |picture|
+      = picture.label :avatar
+      = picture.file_field :avatar
+      = picture.link_to_remove 'Remove'
+    = f.link_to_add 'Add picture', :pictures
+
+
+
 
 
   .actions

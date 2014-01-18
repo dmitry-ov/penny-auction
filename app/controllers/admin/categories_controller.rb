@@ -14,6 +14,7 @@ class Admin::CategoriesController < Admin::BaseController
   # GET /admin/products/new
   def new
     @admin_category = Category.new
+    @admin_category.build_picture
   end
 
   # GET /admin/products/1/edit
@@ -74,6 +75,6 @@ class Admin::CategoriesController < Admin::BaseController
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_category_params
       params[:category][:ancestry] = nil if params[:category][:ancestry] == ""
-      params[:category].permit(:name, :ancestry, :avatar, :avatar_cache)
+      params[:category].permit(:name, :ancestry, picture_attributes: [:avatar])
     end
 end

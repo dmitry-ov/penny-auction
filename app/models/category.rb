@@ -3,7 +3,8 @@ class Category < ActiveRecord::Base
  has_many :products
  mount_uploader :avatar, AvatarUploader
 
- has_one :pictures, as: :imageable
+ has_one :picture, as: :imageable
+ accepts_nested_attributes_for :picture
 
  has_ancestry
 
