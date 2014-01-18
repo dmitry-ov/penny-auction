@@ -21,6 +21,11 @@
     = f.hidden_field :avatar_cache
     -unless @admin_product.avatar == nil
       img src = @admin_product.avatar
+  .form-group
+    nested_form_for @admin_product.pictures do |picture_form|
+      = picture_form.label :avatar
+      = picture_form.text_field :avatar
+
 
   .actions
     = f.submit 'Save'
