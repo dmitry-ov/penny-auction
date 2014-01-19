@@ -22,7 +22,7 @@ feature "Admin can manage categories", %q{
         sign_in_with 'admin@test.com', '12345678'
       end
 
-      scenario 'Admin can view categories list' do
+      scenario 'view categories list' do
         page.should have_content 'Управление категориями'
         page.should have_content name
         page.should have_link 'Show'
@@ -57,8 +57,16 @@ feature "Admin can manage categories", %q{
         page.should have_link 'Back'
       end
 
-      scenario  'edit category' do
-        pending  'change all inside'
+      scenario 'edit category' do
+        click_on 'Edit'
+        page.should have_field('Name', with: name)
+        page.should have_content 'Parent category'
+        page.should have_button 'Save'
+        page.should have_link 'Show'
+        page.should have_link 'Back'
+        fill_in 'Name', with: 'htc'
+        click_on 'Save'
+        page.should have_content 'htc'
       end
 
       scenario   'destroy category' do

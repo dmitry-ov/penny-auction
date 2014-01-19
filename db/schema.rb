@@ -26,7 +26,6 @@ ActiveRecord::Schema.define(version: 20140120075342) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "product_id"
-    t.datetime "expire_time"
     t.datetime "expire_date"
   end
 
