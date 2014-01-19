@@ -6,7 +6,8 @@ p = @admin_category.name
   p = "Parent"
   p = @parent_name
 
-p = image_tag @admin_category.picture.avatar.url
+-unless @admin_category.picture.blank?
+  p = image_tag @admin_category.picture.avatar.url
 
 br
 

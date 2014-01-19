@@ -17,6 +17,9 @@
     = f.label :price
     = f.text_field :price, :class => "form-control"
   .form-group
+      = f.label :category_id
+      = f.select :category_id, (@admin_categories.map{|c| [c.name, c.id] } unless (@admin_categories == nil)), {:include_blank => true}
+  .form-group
     = f.fields_for :pictures do |picture|
       = picture.label :avatar
       = picture.file_field :avatar

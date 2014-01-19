@@ -9,7 +9,7 @@
     = f.label :name
     = f.text_field :name, :class => "form-control"
   .form-group
-    = f.label :ancestry
+    = f.label :parent_category
     = f.select :ancestry, (@admin_categories.map{|c| [c.name, c.id] } unless (@admin_categories == nil)), {:include_blank => true}
   .form-group
     = f.fields_for :picture do |picture|

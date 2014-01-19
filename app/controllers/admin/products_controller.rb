@@ -1,5 +1,6 @@
 class Admin::ProductsController < Admin::BaseController
   before_action :set_admin_product, only: [:show, :edit, :update, :destroy]
+  before_action :get_admin_categories, only: [:new, :show, :edit, :update]
 
   # GET /admin/products
   def index
@@ -64,8 +65,12 @@ class Admin::ProductsController < Admin::BaseController
       @admin_product = Product.find(params[:id])
     end
 
+    def get_admin_categories
+      @admin_categories = Category.all
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_product_params
-      params[:product].permit(:title, :description, :price, :avatar, pictures_attributes: [:id, :avatar, :_destroy])
+      params[:product].permit(:title, :description, :price, :category_id, :avatar, pictures_attributes: [:id, :avatar, :_destroy])
     end
 end

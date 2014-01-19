@@ -4,12 +4,13 @@ p = @admin_product.title
 p = @admin_product.description
 p = @admin_product.price
 
+- unless @admin_product.category_id.blank?
+  p = @admin_product.category.name
+
 - @admin_product.pictures.each do |picture|
   = image_tag picture.avatar.url
 
-
 br
-
 
 = link_to 'Edit', edit_admin_product_path(@admin_product)
 '|
