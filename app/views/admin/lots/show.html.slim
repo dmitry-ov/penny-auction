@@ -1,0 +1,11 @@
+p#notice = notice
+
+p = @admin_lot.step_price
+
+p = @admin_lot.expire_date
+
+br
+
+= link_to 'Edit', edit_admin_lot_path(@admin_lot)
+'|
+= link_to 'Back', admin_lots_path

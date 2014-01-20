@@ -1,0 +1,20 @@
+h3 Управление лотами
+
+table border = 1
+  tr
+    th
+    th
+    th
+
+  -@admin_lots.each do |lot|
+    tr
+      td
+      td
+      td
+      td = link_to 'Show', admin_product_path(lot)
+      td = link_to 'Edit', edit_admin_product_path(lot)
+      td = link_to 'Destroy', admin_product_path(lot), data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Lot', new_admin_lot_path

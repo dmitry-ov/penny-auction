@@ -1,0 +1,29 @@
+= form_for [:admin, @admin_lot] do |f|
+  - if @admin_lot.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@admin_lot.errors.count, "error")} prohibited this lot from being saved:"
+      ul
+        - @admin_lot.errors.full_messages.each do |message|
+          li = message
+
+  .form-group
+    = f.label :step_price
+    = f.text_field :step_price, :class => "form-control"
+  .form-group
+    = f.label :expire_date
+    = f.text_field :expire_date, :class => "form-control"
+
+  /.form-group
+      = f.label :category_id
+      = f.select :category_id, (@admin_categories.map{|c| [c.name, c.id] } unless (@admin_categories == nil)), {:include_blank => true}
+
+
+
+  .actions
+    = f.submit 'Save'
+
+
+
+
+
+
