@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140114135905) do
+ActiveRecord::Schema.define(version: 20140120075342) do
 
   create_table "categories", force: true do |t|
     t.datetime "created_at"
@@ -22,10 +22,12 @@ ActiveRecord::Schema.define(version: 20140114135905) do
   end
 
   create_table "lots", force: true do |t|
-    t.decimal  "step_price", precision: 8, scale: 2
+    t.decimal  "step_price",  precision: 8, scale: 2
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "product_id"
+    t.datetime "expire_time"
+    t.datetime "expire_date"
   end
 
   add_index "lots", ["product_id"], name: "index_lots_on_product_id"

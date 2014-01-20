@@ -12,6 +12,7 @@ gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) support
 
 gem 'carrierwave'
 gem 'nested_form'
+gem 'validates_timeliness'
 
 gem 'sqlite3'
 
