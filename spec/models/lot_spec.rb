@@ -12,7 +12,6 @@ describe Lot do
     it { should validate_numericality_of(:step_price).is_greater_than_or_equal_to BigDecimal.new('0.01') }
   end
 
-
   describe "should have expire date" do
 
     before do
