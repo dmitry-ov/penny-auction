@@ -17,7 +17,8 @@ feature "Admin logging in to admin area", %q{
 
     scenario "Unauthenticated user tries to get an access to admin area" do
       current_path.should == new_user_session_path
-      page.should have_content 'Вам необходимо войти или зарегистрироваться'
+      save_and_open_page
+      page.should have_content 'Вам необходимо войти в систему или зарегистрироваться'
     end
 
     scenario "Admin successfully logging into admin area" do
