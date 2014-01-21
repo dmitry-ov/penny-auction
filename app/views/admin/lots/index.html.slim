@@ -2,18 +2,16 @@ h3 Управление лотами
 
 table border = 1
   tr
-    th
-    th
-    th
+    th = "Шаг цены"
+    th = "Дата окончания"
 
   -@admin_lots.each do |lot|
     tr
-      td
-      td
-      td
-      td = link_to 'Show', admin_product_path(lot)
-      td = link_to 'Edit', edit_admin_product_path(lot)
-      td = link_to 'Destroy', admin_product_path(lot), data: {:confirm => 'Are you sure?'}, :method => :delete
+      td = lot.step_price
+      td = lot.expire_date
+      td = link_to 'Show', admin_lot_path(lot)
+      td = link_to 'Edit', edit_admin_lot_path(lot)
+      td = link_to 'Destroy', admin_lot_path(lot), data: {:confirm => 'Are you sure?'}, :method => :delete
 
 br
 

@@ -17,8 +17,6 @@
       = f.label :category_id
       = f.select :category_id, (@admin_categories.map{|c| [c.name, c.id] } unless (@admin_categories == nil)), {:include_blank => true}
 
-
-
   .actions
     = f.submit 'Save'
 
