@@ -22,7 +22,6 @@ feature "Admin logging in to admin area", %q{
 
     scenario "Admin successfully logging into admin area" do
       sign_in_with 'admin@test.com', '12345678'
-
       page.should have_content 'Управление продуктами'
     end
 

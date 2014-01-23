@@ -14,8 +14,19 @@ feature "Admin can manage products", %q{
 
   it_behaves_like "Admin accessible"
 
-  scenario 'Admin can view products list' do
-    pending
+
+  describe 'Admin can' do
+    pending 'view products list'
+    pending 'add product'
+    pending 'show product'
+    pending 'edit product'
+    pending 'destroy product'
+    pending 'click back on new page'
+    pending 'click back on show page'
+    pending 'click edit on show page'
+    pending 'click show on edit page'
+    pending 'click back on edit page'
   end
+
 
 end

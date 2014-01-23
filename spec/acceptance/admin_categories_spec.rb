@@ -14,8 +14,9 @@ feature "Admin can manage categories", %q{
 
   it_behaves_like "Admin accessible"
 
-  scenario 'Admin can view categroies list' do
+  scenario 'Admin can view categories list' do
     visit path
+
   end
 
 end
