@@ -56,9 +56,17 @@ feature "Admin can manage categories", %q{
         page.should have_link 'Edit'
         page.should have_link 'Back'
       end
-  end
 
-    pending 'edit category'
-    pending 'destroy category'
+      scenario  'edit category' do
+        pending  'change all inside'
+      end
+
+      scenario   'destroy category' do
+        click_on 'Destroy'
+        page.should_not have_link 'Show'
+        page.should_not have_link 'Edit'
+        page.should_not have_link 'Destroy'
+      end
+  end
 
 end
