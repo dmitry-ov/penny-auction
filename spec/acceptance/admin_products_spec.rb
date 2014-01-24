@@ -30,6 +30,10 @@ feature "Admin can manage products", %q{
         page.should have_content title
         page.should have_content description
         page.should have_content price
+        page.should have_link 'New Product'
+        page.should have_link 'Show'
+        page.should have_link 'Edit'
+        page.should have_link 'Destroy'
       end
 
       scenario 'add product' do
@@ -68,6 +72,11 @@ feature "Admin can manage products", %q{
         page.should_not have_content description
         page.should_not have_content price
       end
+
+      pending 'add image to product'
+      pending 'remove image from product'
+      pending 'select category to product'
+
     end
 
 
