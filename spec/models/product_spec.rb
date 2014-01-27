@@ -12,4 +12,5 @@ describe Product do
 
   it { should have_many(:lots).dependent(:destroy) }
   it { should belong_to(:category) }
+  it { should validate_presence_of(:category) }
 end

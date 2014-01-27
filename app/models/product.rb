@@ -11,5 +11,5 @@ class Product < ActiveRecord::Base
 
   validates :title, presence: true, uniqueness: true, length: { in: 4..120 }
   validates :price, presence: true, numericality: {greater_than_or_equal_to: 0.01}
-
+  validates :category, presence: true
 end
