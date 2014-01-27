@@ -7,13 +7,15 @@ feature "Admin can manage products", %q{
  } do
 
   let(:path) { admin_products_path }
+  let(:name) { 'Телефоны' }
   let(:title) { 'mobile phone' }
   let(:description) { 'new iphone' }
   let(:price) { 1234567.89 }
 
   background do
     User.create!(email: 'admin@test.com', password: '12345678', password_confirmation: '12345678', admin: true)
-    Product.create!(title: title, description: description, price: price)
+    Category.create!(name: name)
+    Product.create!(title: title, description: description, price: price, category: Category.first)
   end
 
   it_behaves_like "Admin accessible"
@@ -75,7 +77,7 @@ feature "Admin can manage products", %q{
 
       pending 'add image to product'
       pending 'remove image from product'
-      pending 'select category to product'
+      pending 'select category to product in edit and new views'
 
     end
 

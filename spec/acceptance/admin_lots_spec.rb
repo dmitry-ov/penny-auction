@@ -7,12 +7,14 @@ feature "Admin can manage lots", %q{
  } do
 
   let(:path) { admin_lots_path }
+  let(:name) { 'Телефоны' }
   let(:date) { DateTime.now + 1.month }
 
   background do
     User.create!(email: 'admin@test.com', password: '12345678', password_confirmation: '12345678', admin: true)
-    Product.create!(title: 'mobile phone', description: 'new iphone', price: 1234567.89)
-    Product.create!(title: 'television', description: 'from Samsung', price: 4567.89)
+    Category.create!(name: name)
+    Product.create!(title: 'mobile phone', description: 'new iphone', price: 1234567.89, category: Category.first)
+    Product.create!(title: 'television', description: 'from Samsung', price: 4567.89, category: Category.first)
     Lot.create!(step_price: 0.05, expire_date: date, product: Product.first )
   end
 
@@ -61,7 +63,6 @@ feature "Admin can manage lots", %q{
         page.should have_content date.month
         page.should have_content date.day
         page.should have_content Product.first.title
-        save_and_open_page
       end
 
       scenario 'destroy lot' do

@@ -15,7 +15,9 @@ describe Lot do
   describe "should have expire date" do
 
     before do
-      @lot = Lot.new(:step_price => 0.02)
+      Category.create!(name: "Телефоны")
+      Product.create!(title: 'mobile phone', description: 'new iphone', price: 1234567.89,  category: Category.first)
+      @lot = Lot.new(step_price: 0.02, product: Product.first )
     end
 
     it {should validate_presence_of(:expire_date)}
