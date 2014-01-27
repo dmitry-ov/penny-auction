@@ -1,8 +1,16 @@
 p#notice = notice
 
+h5 = 'Шаг цены'
 p = @admin_lot.step_price
 
+h5 = 'Дата окончания'
 p = @admin_lot.expire_date
+
+-title = @admin_products.find_by_id(@admin_lot.product_id).title
+-unless title == nil
+  h5 = 'Продукт'
+  p = title
+
 
 br
 

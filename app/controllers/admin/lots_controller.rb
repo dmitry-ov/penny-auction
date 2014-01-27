@@ -1,5 +1,6 @@
 class Admin::LotsController < Admin::BaseController
   before_action :set_admin_lot, only: [:show, :edit, :update, :destroy]
+  before_action :set_admin_products, only: [:new, :create, :edit, :show, :index]
 
   # GET /admin/lots
   def index
@@ -62,6 +63,10 @@ class Admin::LotsController < Admin::BaseController
   # Use callbacks to share common setup or constraints between actions.
   def set_admin_lot
     @admin_lot = Lot.find(params[:id])
+  end
+
+  def set_admin_products
+    @admin_products = Product.all
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

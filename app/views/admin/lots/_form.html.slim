@@ -12,6 +12,11 @@
   .form-group
     = f.label :expire_date
     = f.text_field :expire_date, :class => "form-control"
+  .form-group
+    = f.label :product
+    /= f.text_field :expire_date, :class => "form-control"
+    = f.select :product_id, (@admin_products.map{|c| [c.title, c.id] } unless (@admin_products == nil)), {:include_blank => true}
+
 
   /.form-group
       = f.label :category_id
