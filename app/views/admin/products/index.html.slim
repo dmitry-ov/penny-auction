@@ -6,7 +6,7 @@ table border = 1
     th descriptions
     th price
 
-  -@admin_products.each do |product|
+  -collection.each do |product|
     tr
       td = product.title
       td = product.description
