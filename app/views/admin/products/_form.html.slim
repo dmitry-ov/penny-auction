@@ -1,10 +1,10 @@
 /= form_for [:admin, @admin_product] do |f|
-= nested_form_for [:admin, @admin_product] do |f|
-  - if @admin_product.errors.any?
+= nested_form_for [:admin, resource] do |f|
+  - if resource.errors.any?
     #error_explanation
-      h2 = "#{pluralize(@admin_product.errors.count, "error")} prohibited this product from being saved:"
+      h2 = "#{pluralize(resource.errors.count, "error")} prohibited this product from being saved:"
       ul
-        - @admin_product.errors.full_messages.each do |message|
+        - resource.errors.full_messages.each do |message|
           li = message
 
   .form-group
