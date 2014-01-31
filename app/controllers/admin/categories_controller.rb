@@ -1,10 +1,12 @@
 class Admin::CategoriesController < Admin::BaseController
   before_action :set_admin_category, only: [:show, :edit, :update, :destroy]
-  before_action :set_admin_categories, only: [:new, :create, :edit, :show]
+  before_action :set_admin_categories, only: [:new, :create, :edit, :show, :destroy]
 
   # GET /admin/products
   def index
     @admin_categories = Category.all
+    @admin_category = Category.new
+    @admin_category.build_picture
   end
 
   # GET /admin/products/1
@@ -28,10 +30,14 @@ class Admin::CategoriesController < Admin::BaseController
     respond_to do |format|
       if @admin_category.save
         format.html { redirect_to [:admin, @admin_category], notice: 'Product was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @admin_category }
+        format.js {
+                    @admin_categories = Category.all
+                    @admin_category = Category.new
+                    @admin_category.build_picture
+        }
       else
         format.html { render action: 'new' }
-        format.json { render json: @admin_category.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -42,10 +48,8 @@ class Admin::CategoriesController < Admin::BaseController
     respond_to do |format|
       if @admin_category.update(admin_category_params)
         format.html { redirect_to [:admin, @admin_category], notice: 'Product was successfully updated.' }
-        format.json { head :no_content }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @admin_category.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -56,7 +60,7 @@ class Admin::CategoriesController < Admin::BaseController
     @admin_category.destroy
     respond_to do |format|
       format.html { redirect_to admin_categories_url }
-      format.json { head :no_content }
+      format.js
     end
   end
 

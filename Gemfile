@@ -14,6 +14,7 @@ gem 'carrierwave'
 gem 'nested_form'
 gem 'validates_timeliness'
 gem 'inherited_resources'
+gem 'thin'
 
 gem 'sqlite3'
 
