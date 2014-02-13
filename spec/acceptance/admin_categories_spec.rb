@@ -19,11 +19,13 @@ feature "Admin can manage categories", %q{
   it_behaves_like "Admin accessible"
 
 
-  context 'ajax add', js:true  do
+  context 'ajax' do
     scenario 'add category' do
       visit path
       sign_in_with email, password
       expect(current_path).to be_eql admin_categories_path
+
+      #save_and_open_page
 
       page.should have_field('Name')
       page.should have_content('Parent category')

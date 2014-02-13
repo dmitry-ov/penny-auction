@@ -38,6 +38,9 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    capybara-webkit (1.1.0)
+      capybara (~> 2.0, >= 2.0.2)
+      json
     carrierwave (0.9.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -54,6 +57,7 @@ GEM
     coffee-script-source (1.6.3)
     commonjs (0.2.7)
     daemons (1.1.9)
+    database_cleaner (1.2.0)
     devise (3.2.2)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -218,8 +222,10 @@ PLATFORMS
 DEPENDENCIES
   ancestry
   capybara
+  capybara-webkit
   carrierwave
   coffee-rails (~> 4.0.0)
+  database_cleaner
   devise
   execjs
   inherited_resources
