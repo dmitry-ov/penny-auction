@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'acceptance/acceptance_helper'
 
 feature "Admin can manage categories", %q{
   In order to group products by categories
@@ -19,69 +19,66 @@ feature "Admin can manage categories", %q{
   it_behaves_like "Admin accessible"
 
 
-  context 'ajax' do
-    scenario 'add category' do
+  feature 'Admin can' do
+    background do
       visit path
       sign_in_with email, password
-      expect(current_path).to be_eql admin_categories_path
-
-      #save_and_open_page
-
-      page.should have_field('Name')
-      page.should have_content('Parent category')
-      page.should have_button 'Save'
-
-      name_child = 'iPhone 5'
-      fill_in 'Name', with: name_child
-      select name, from: 'category_ancestry'
-      pending 'add picture to category'
-      click_button 'Save'
-
-      page.should have_content name
-      page.should have_content name_child
     end
-  end
 
+    context 'ajax', js: true  do
+      scenario 'add category' do
+        expect(current_path).to be_eql admin_categories_path
 
-  feature 'Admin can' do
-      background do
-        visit path
-        sign_in_with email, password
+        name_child = 'iPhone 5'
+        fill_in 'Name', with: name_child
+        select name, from: 'category_ancestry'
+        pending 'add picture to category'
+        click_button 'Save'
+
+        expect(page).to have_content name
+        expect(page).to have_content name_child
       end
 
-      scenario 'view categories list' do
-        page.should have_content 'Управление категориями'
-        page.should have_content name
-        page.should have_link 'Show'
-        page.should have_link 'Edit'
-        page.should have_link 'Destroy'
-      end
-
-      scenario 'show category' do
-        click_on 'Show'
-        page.should have_content name
-        page.should have_link 'Edit'
-        page.should have_link 'Back'
-      end
-
-      scenario 'edit category' do
-        click_on 'Edit'
-        page.should have_field('Name', with: name)
-        page.should have_content 'Parent category'
-        page.should have_button 'Save'
-        page.should have_link 'Show'
-        page.should have_link 'Back'
-        fill_in 'Name', with: 'htc'
-        click_on 'Save'
-        page.should have_content 'htc'
-      end
-
-      scenario   'destroy category' do
+      scenario 'destroy category' do
+        expect(page).to have_content 'Destroy'
         click_on 'Destroy'
-        page.should_not have_link 'Show'
-        page.should_not have_link 'Edit'
-        page.should_not have_link 'Destroy'
+        page.driver.accept_js_confirms!
+        #page.driver.browser.switch_to.alert.accept
+
+        expect(page).to have_content 'Управление категориями'
+        expect(page).to have_content 'Name'
+        expect(page).to have_content 'Parent category'
+        expect(page).to have_button 'Save'
       end
+    end
+
+    scenario 'view categories list' do
+      expect(page).to have_content 'Управление категориями'
+      expect(page).to have_content name
+      expect(page).to have_link 'Show'
+      expect(page).to have_link 'Edit'
+      expect(page).to have_link 'Destroy'
+    end
+
+    scenario 'show category' do
+      click_on 'Show'
+      expect(page).to have_content name
+      expect(page).to have_link 'Edit'
+      expect(page).to have_link 'Back'
+    end
+
+    scenario 'edit category' do
+      click_on 'Edit'
+      expect(page).to have_field('Name', with: name)
+      expect(page).to have_content 'Parent category'
+      expect(page).to have_button 'Save'
+      expect(page).to have_link 'Show'
+      expect(page).to have_link 'Back'
+      fill_in 'Name', with: 'htc'
+      click_on 'Save'
+      expect(page).to have_content 'htc'
+    end
+
   end
 
 end
