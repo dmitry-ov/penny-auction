@@ -10,12 +10,26 @@ class Lot < ActiveRecord::Base
   validate :begin_date_less_expire_date
 
 
+  def started?
+    self.begin_date < Time.now.utc
+  end
+
+  def active?
+    now = Time.now.utc
+    self.begin_date < now  &&  now < self.expire_date
+  end
+
+  def finished?
+    self.expire_date < Time.now.utc
+  end
+
+
+  private
+
   def begin_date_less_expire_date
     unless :begin_date < :expire_date
       errors.add(:begin_date, "can't be more than expire_date")
     end
   end
-
-
 
 end

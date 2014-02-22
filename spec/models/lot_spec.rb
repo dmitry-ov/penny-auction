@@ -20,9 +20,8 @@ describe Lot do
   describe "should have expire date" do
     it { should respond_to(:begin_date) }
     it { should validate_presence_of(:expire_date) }
-  end
 
-  describe "begin date less that expire date" do
+    context "begin date less that expire date" do
       before do
         Category.create!(name: "Телефоны")
         Product.create!(title: 'mobile phone', description: 'new iphone 5s', price: 1234567.89,  category: Category.first)
@@ -34,5 +33,38 @@ describe Lot do
         @lot.expire_date = DateTime.now + 1.month
         expect(@lot).to be_valid
       end
+    end
   end
+
+  describe "should have status" do
+    it { should respond_to(:started?) }
+    it { should respond_to(:active?) }
+    it { should respond_to(:finished?) }
+
+    context " " do
+      before do
+        Category.create!(name: "Телефоны")
+        Product.create!(title: 'mobile phone', description: 'new iphone 5s', price: 1234567.89,  category: Category.first)
+        @lot = Lot.new(step_price: 0.02, product: Product.first)
+      end
+
+      it "started?" do
+        @lot.begin_date = DateTime.now - 1.second
+        expect(@lot.started?).to be_true
+      end
+
+      it "active?" do
+        @lot.begin_date = DateTime.now - 1.hour
+        @lot.expire_date = DateTime.now + 1.day
+        expect(@lot.active?).to be_true
+      end
+
+      it "finished?" do
+        @lot.begin_date = DateTime.now - 1.day
+        @lot.expire_date = DateTime.now - 1.hour
+        expect(@lot.finished?).to be_true
+      end
+    end
+  end
+
 end
