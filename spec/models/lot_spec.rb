@@ -62,7 +62,6 @@ describe Lot do
         expect(@lot.active?).to be_true
         expect(@lot.started?).to be_true
         expect(@lot.finished?).to be_false
-
       end
 
       it "future" do
@@ -72,6 +71,36 @@ describe Lot do
         expect(@lot.started?).to be_false
         expect(@lot.finished?).to be_false
       end
+    end
+  end
+
+
+  describe "should have scope" do
+    before do
+      Category.create!(name: "Телефоны")
+      Product.create!(title: 'mobile phone', description: 'new iphone 5s', price: 1234567.89, category: Category.first)
+      @lot = Lot.new(step_price: 0.02, product: Product.first )
+    end
+
+    it "scope started" do
+      @lot.begin_date =  DateTime.now - 1.hour
+      @lot.expire_date = DateTime.now + 1.day
+      @lot.save
+      expect(Lot.started.size).to eq(1)
+    end
+
+    it "scope active" do
+      @lot.begin_date =  DateTime.now - 1.hour
+      @lot.expire_date = DateTime.now + 1.hour
+      @lot.save
+      expect(Lot.active.size).to eq(1)
+    end
+
+    it "scope finished" do
+      @lot.begin_date =  DateTime.now - 1.day
+      @lot.expire_date = DateTime.now - 1.hour
+      @lot.save
+      expect(Lot.finished.size).to eq(1)
     end
   end
 
