@@ -10,6 +10,13 @@ class Lot < ActiveRecord::Base
   validate :begin_date_less_expire_date
 
 
+  #scope :started, -> { where ("begin_date < #{Time.now}")}
+  #scope :red, -> { where(color: 'red') }
+
+  scope :started, -> { Lot.all { |lot| lot.started? } }
+  scope :active, -> { Lot.all { |lot| lot.active? } }
+  scope :finished, -> { Lot.all { |lot| lot.finished? } }
+
   def started?
     self.begin_date < Time.now.utc
   end
