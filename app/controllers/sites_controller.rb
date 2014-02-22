@@ -6,7 +6,9 @@ class SitesController < ApplicationController
   def index
     #@sites = Site.all
     @products = Product.all
-
+    @lot_active = Lot.active
+    @lot_started = Lot.started
+    @lot_finished = Lot.finished
   end
 
   # GET /sites/1

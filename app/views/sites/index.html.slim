@@ -1,13 +1,52 @@
-h1 Listing sites
+h3 = 'Список аукционов'
 
-table
+h5 = "Активны"
+table border = 1
   tr
     th
     th
     th
+    th
 
-  - @products.each do |product|
+  - @lot_active.each do |active|
     tr
+      td = active.product.title
+      td = active.step_price
+      td = active.begin_date
+      td = active.expire_date
+br
+
+h5 = "Начаты"
+table border = 1
+  tr
+    th
+    th
+    th
+    th
+  - @lot_started.each do |active|
+  - @lot_started.each do |active|
+      tr
+        td = active.product.title
+        td = active.step_price
+        td = active.begin_date
+        td = active.expire_date
+
+h5 = "Завершенны"
+table border = 1
+  tr
+    th
+    th
+    th
+    th
+
+  - @lot_finished.each do |active|
+      tr
+        td = active.product.title
+        td = active.step_price
+        td = active.begin_date
+        td = active.expire_date
+
+
       /td = link_to 'Show', site
       /td = link_to 'Edit', edit_site_path(site)
       /td = link_to 'Destroy', site, data: {:confirm => 'Are you sure?'}, :method => :delete
