@@ -16,14 +16,13 @@ table border = 1
       td = active.expire_date
 br
 
-h5 = "Начаты"
+h5 = "Начнутся"
 table border = 1
   tr
     th
     th
     th
     th
-  - @lot_started.each do |active|
   - @lot_started.each do |active|
       tr
         td = active.product.title
@@ -50,7 +49,3 @@ table border = 1
       /td = link_to 'Show', site
       /td = link_to 'Edit', edit_site_path(site)
       /td = link_to 'Destroy', site, data: {:confirm => 'Are you sure?'}, :method => :delete
-
-br
-
-/= link_to 'New Site', new_site_path

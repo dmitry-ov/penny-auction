@@ -3,6 +3,7 @@ class Lot < ActiveRecord::Base
   validates :product, presence: true
 
   validates :step_price, presence: true, numericality: {greater_than_or_equal_to: 0.01}
+  validates :price, presence: true, numericality: { greater_than_or_equal_to: 1 }
 
   validates :begin_date, presence: true
   validates :expire_date, presence: true
@@ -18,7 +19,7 @@ class Lot < ActiveRecord::Base
   scope :finished, -> { Lot.all.select { |lot| lot.finished? } }
 
   def started?
-    self.begin_date < Time.now.utc
+    self.begin_date > Time.now.utc
   end
 
   def active?
@@ -35,7 +36,7 @@ class Lot < ActiveRecord::Base
 
   def begin_date_less_expire_date
     unless :begin_date < :expire_date
-      errors.add(:begin_date, "can't be more than expire_date")
+      errors.add(:begin_date, "begin date must be less than expire_date")
     end
   end
 

@@ -12,6 +12,12 @@ describe Lot do
     it { should validate_numericality_of(:step_price).is_greater_than_or_equal_to BigDecimal.new('0.01') }
   end
 
+  describe "should have price" do
+    it { should respond_to(:price) }
+    it { should validate_presence_of(:price) }
+    it { should validate_numericality_of(:price).is_greater_than_or_equal_to BigDecimal.new('1') }
+  end
+
   describe "should have begin date" do
     it { should respond_to(:begin_date) }
     it { should validate_presence_of(:begin_date) }
@@ -25,7 +31,7 @@ describe Lot do
       before do
         Category.create!(name: "Телефоны")
         Product.create!(title: 'mobile phone', description: 'new iphone 5s', price: 1234567.89,  category: Category.first)
-        @lot = Lot.new(step_price: 0.02, product: Product.first)
+        @lot = Lot.new(step_price: 0.02, price: 5.4, product: Product.first)
       end
 
       it "begin date before expire date" do
@@ -45,13 +51,13 @@ describe Lot do
       before do
         Category.create!(name: "Телефоны")
         Product.create!(title: 'mobile phone', description: 'new iphone 5s', price: 1234567.89, category: Category.first)
-        @lot = Lot.new(step_price: 0.02, product: Product.first)
+        @lot = Lot.new(step_price: 0.02, price: 5.4, product: Product.first)
       end
 
       it "past" do
         @lot.begin_date = DateTime.now - 3.day
         @lot.expire_date = DateTime.now - 1.day
-        expect(@lot.started?).to be_true
+        expect(@lot.started?).to be_false
         expect(@lot.active?).to be_false
         expect(@lot.finished?).to be_true
       end
@@ -60,7 +66,7 @@ describe Lot do
         @lot.begin_date = DateTime.now - 1.hour
         @lot.expire_date = DateTime.now + 1.day
         expect(@lot.active?).to be_true
-        expect(@lot.started?).to be_true
+        expect(@lot.started?).to be_false
         expect(@lot.finished?).to be_false
       end
 
@@ -68,7 +74,7 @@ describe Lot do
         @lot.begin_date = DateTime.now + 1.hour
         @lot.expire_date = DateTime.now + 2.day
         expect(@lot.active?).to be_false
-        expect(@lot.started?).to be_false
+        expect(@lot.started?).to be_true
         expect(@lot.finished?).to be_false
       end
     end
@@ -79,11 +85,11 @@ describe Lot do
     before do
       Category.create!(name: "Телефоны")
       Product.create!(title: 'mobile phone', description: 'new iphone 5s', price: 1234567.89, category: Category.first)
-      @lot = Lot.new(step_price: 0.02, product: Product.first )
+      @lot = Lot.new(step_price: 0.02, price: 5.4, product: Product.first )
     end
 
     it "scope started" do
-      @lot.begin_date =  DateTime.now - 1.hour
+      @lot.begin_date =  DateTime.now + 1.hour
       @lot.expire_date = DateTime.now + 1.day
       @lot.save
       expect(Lot.started.size).to eq(1)
