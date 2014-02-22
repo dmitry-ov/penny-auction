@@ -8,7 +8,7 @@ feature "Admin can manage lots", %q{
 
   let(:path) { admin_lots_path }
   let(:name) { 'Телефоны' }
-  let(:date) { (DateTime.now + 10.day).to_s }
+  let(:date) { DateTime.now + 10.day }
 
   background do
     User.create!(email: 'admin@test.com', password: '12345678', password_confirmation: '12345678', admin: true)
@@ -58,9 +58,9 @@ feature "Admin can manage lots", %q{
 
       scenario 'show lot' do
         click_on 'Show'
-        save_and_open_page
+        #save_and_open_page
         page.should have_content 0.05
-        page.should have_content date  year
+        page.should have_content date.year
         page.should have_content date.month
         page.should have_content date.day
         page.should have_content Product.first.title
