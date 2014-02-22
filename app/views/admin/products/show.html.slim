@@ -1,10 +1,17 @@
 p#notice = notice
 
+h5 = 'Название'
 p = resource.title
+
+
+h5 = 'Описание'
 p = resource.description
+
+h5 = 'Цена'
 p = resource.price
 
 - unless resource.category_id.blank?
+  h5 = 'Категория'
   p = resource.category.name
 
 - resource.pictures.each do |picture|

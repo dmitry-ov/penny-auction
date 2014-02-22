@@ -8,6 +8,7 @@ feature "Admin can manage lots", %q{
 
   let(:path) { admin_lots_path }
   let(:name) { 'Телефоны' }
+  let(:begindate) { DateTime.now - 10.day }
   let(:date) { DateTime.now + 10.day }
 
   background do
@@ -15,7 +16,7 @@ feature "Admin can manage lots", %q{
     Category.create!(name: name)
     Product.create!(title: 'mobile phone', description: 'new iphone', price: 1234567.89, category: Category.first)
     Product.create!(title: 'television', description: 'from Samsung', price: 4567.89, category: Category.first)
-    Lot.create!(step_price: 0.05, expire_date: date, product: Product.first )
+    Lot.create!(step_price: 0.05, begin_date: begindate, expire_date: date, product: Product.first )
   end
 
   it_behaves_like "Admin accessible"
