@@ -12,35 +12,27 @@ describe Lot do
     it { should validate_numericality_of(:step_price).is_greater_than_or_equal_to BigDecimal.new('0.01') }
   end
 
-  describe "should have expire date" do
-
-    before do
-      Category.create!(name: "Телефоны")
-      Product.create!(title: 'mobile phone', description: 'new iphone', price: 1234567.89,  category: Category.first)
-      @lot = Lot.new(step_price: 0.02, product: Product.first )
-    end
-
-    it {should validate_presence_of(:expire_date)}
-
-    it "expire date after now" do
-      @lot.expire_date = DateTime.now + 1.second
-      expect(DateTime.now..DateTime.now+1.year).to cover(@lot.expire_date)
-    end
-
-    it "should have expire date before now" do
-      @lot.expire_date = DateTime.now - 5.second
-      expect(@lot).not_to be_valid
-    end
-
-    it "expire date before 1 year" do
-      @lot.expire_date = DateTime.now + 1.year -  5.second
-      expect(@lot).to be_valid
-    end
-
-    it "should have expire date after 1 year" do
-      @lot.expire_date = DateTime.now + 1.year +  5.second
-      expect(@lot).not_to be_valid
-    end
+  describe "should have begin date" do
+    it { should respond_to(:begin_date) }
+    it { should validate_presence_of(:begin_date) }
   end
 
+  describe "should have expire date" do
+    it { should respond_to(:begin_date) }
+    it { should validate_presence_of(:expire_date) }
+  end
+
+  describe "begin date less that expire date" do
+      before do
+        Category.create!(name: "Телефоны")
+        Product.create!(title: 'mobile phone', description: 'new iphone 5s', price: 1234567.89,  category: Category.first)
+        @lot = Lot.new(step_price: 0.02, product: Product.first)
+      end
+
+      it "begin date before expire date" do
+        @lot.begin_date = DateTime.now
+        @lot.expire_date = DateTime.now + 1.month
+        expect(@lot).to be_valid
+      end
+  end
 end
