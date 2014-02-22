@@ -41,28 +41,36 @@ describe Lot do
     it { should respond_to(:active?) }
     it { should respond_to(:finished?) }
 
-    context " " do
+    context "time" do
       before do
         Category.create!(name: "Телефоны")
-        Product.create!(title: 'mobile phone', description: 'new iphone 5s', price: 1234567.89,  category: Category.first)
+        Product.create!(title: 'mobile phone', description: 'new iphone 5s', price: 1234567.89, category: Category.first)
         @lot = Lot.new(step_price: 0.02, product: Product.first)
       end
 
-      it "started?" do
-        @lot.begin_date = DateTime.now - 1.second
+      it "past" do
+        @lot.begin_date = DateTime.now - 3.day
+        @lot.expire_date = DateTime.now - 1.day
         expect(@lot.started?).to be_true
+        expect(@lot.active?).to be_false
+        expect(@lot.finished?).to be_true
       end
 
-      it "active?" do
+      it "now" do
         @lot.begin_date = DateTime.now - 1.hour
         @lot.expire_date = DateTime.now + 1.day
         expect(@lot.active?).to be_true
+        expect(@lot.started?).to be_true
+        expect(@lot.finished?).to be_false
+
       end
 
-      it "finished?" do
-        @lot.begin_date = DateTime.now - 1.day
-        @lot.expire_date = DateTime.now - 1.hour
-        expect(@lot.finished?).to be_true
+      it "future" do
+        @lot.begin_date = DateTime.now + 1.hour
+        @lot.expire_date = DateTime.now + 2.day
+        expect(@lot.active?).to be_false
+        expect(@lot.started?).to be_false
+        expect(@lot.finished?).to be_false
       end
     end
   end
