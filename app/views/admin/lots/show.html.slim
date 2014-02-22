@@ -3,15 +3,19 @@ p#notice = notice
 h5 = 'Шаг цены'
 p = @admin_lot.step_price
 
+h5 = 'Дата начала'
+p = @admin_lot.begin_date
+
 h5 = 'Дата окончания'
 p = @admin_lot.expire_date
 
--title = @admin_products.find_by_id(@admin_lot.product_id).title
--unless title == nil
-  h5 = 'Продукт'
-  p = title
+- product = @admin_products.find_by_id(@admin_lot.product_id)
+- unless product == nil
+  h5 = 'Товар'
+  p = product.title
+  p = link_to 'Подробнее о товаре', admin_product_path(product)
 
-
+br
 br
 
 = link_to 'Edit', edit_admin_lot_path(@admin_lot)
