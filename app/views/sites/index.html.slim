@@ -10,7 +10,8 @@ table border = 1
     th = 'Время окончания аукциона'
   - @lot_active.each do |active|
     tr
-      td = active.product.avatar
+      td
+        img src = active.product.pictures.first.avatar
       td = active.product.title
       td = active.price
       td = active.step_price
@@ -27,7 +28,8 @@ table border = 1
     th = 'Время начала аукциона'
   - @lot_started.each do |active|
       tr
-        td = active.product.avatar
+        td
+          img src = active.product.pictures.first.avatar
         td = active.product.title
         td = active.price
         td = active.step_price
@@ -42,7 +44,8 @@ table border = 1
     th = 'Шаг цены'
   - @lot_finished.each do |active|
       tr
-        td = active.product.avatar
+        td
+          img src = active.product.pictures.first.avatar
         td = active.product.title
         td = active.price
         td = active.step_price
