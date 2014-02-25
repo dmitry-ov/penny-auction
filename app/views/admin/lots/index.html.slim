@@ -3,6 +3,7 @@ h4 Управление лотами
 table border = 1
   tr
     th = "Шаг цены"
+    th = "Цена"
     th = "Дата начала"
     th = "Дата окончания"
     th = "Продукт"
@@ -10,6 +11,7 @@ table border = 1
   -@admin_lots.each do |lot|
     tr
       td = lot.step_price
+      td = lot.price
       td = lot.begin_date
       td = lot.expire_date
       - parent = @admin_products.find_by_id(lot.product_id)

@@ -7,10 +7,12 @@ table border = 1
     th
     th
     th
+    th
 
   - @lot_active.each do |active|
     tr
       td = active.product.title
+      td = active.price
       td = active.step_price
       td = active.begin_date
       td = active.expire_date
@@ -23,9 +25,11 @@ table border = 1
     th
     th
     th
+    th
   - @lot_started.each do |active|
       tr
         td = active.product.title
+        td = active.price
         td = active.step_price
         td = active.begin_date
         td = active.expire_date
@@ -37,10 +41,12 @@ table border = 1
     th
     th
     th
+    th
 
   - @lot_finished.each do |active|
       tr
         td = active.product.title
+        td = active.price
         td = active.step_price
         td = active.begin_date
         td = active.expire_date
