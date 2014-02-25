@@ -5,6 +5,7 @@ class Admin::LotsController < Admin::BaseController
   # GET /admin/lots
   def index
     @admin_lots = Lot.all
+
   end
 
   # GET /admin/lots/1
