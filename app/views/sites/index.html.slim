@@ -8,15 +8,15 @@ table border = 1
     th = 'Цена'
     th = 'Шаг цены'
     th = 'Время окончания аукциона'
-  - @lot_active.each do |active|
+  - @lot_active.each do |lot|
     tr
       td
-        -if active.product.pictures.first
-          img src = active.product.pictures.first.avatar
-      td = active.product.title
-      td = active.price
-      td = active.step_price
-      td = active.expire_date
+        -if lot.product.pictures.first
+          img src = lot.product.pictures.first.avatar
+      td = lot.product.title
+      td = lot.price
+      td = lot.step_price
+      td = lot.expire_date
 
 
 h5 = "Начнутся"
@@ -27,15 +27,15 @@ table border = 1
     th = 'Цена'
     th = 'Шаг цены'
     th = 'Время начала аукциона'
-  - @lot_started.each do |active|
+  - @lot_started.each do |lot|
       tr
         td
-          -if active.product.pictures.first
-            img src = active.product.pictures.first.avatar
-        td = active.product.title
-        td = active.price
-        td = active.step_price
-        td = active.begin_date
+          -if lot.product.pictures.first
+            img src = lot.product.pictures.first.avatar
+        td = lot.product.title
+        td = lot.price
+        td = lot.step_price
+        td = lot.begin_date
 
 h5 = "Завершенны"
 table border = 1
@@ -44,14 +44,14 @@ table border = 1
     th = 'Наименование'
     th = 'Цена'
     th = 'Шаг цены'
-  - @lot_finished.each do |active|
+  - @lot_finished.each do |lot|
       tr
         td
-          -if active.product.pictures.first
-            img src = active.product.pictures.first.avatar
-        td = active.product.title
-        td = active.price
-        td = active.step_price
+          -if lot.product.pictures.first
+            img src = lot.product.pictures.first.avatar
+        td = lot.product.title
+        td = lot.price
+        td = lot.step_price
 
 
       /td = link_to 'Show', site
