@@ -1,6 +1,5 @@
 table border = 1
   tr
-    th id
     th title
     th parent
     th
@@ -8,7 +7,6 @@ table border = 1
 
   -@admin_categories.each do |category|
     tr
-      td = category.id
       td = category.name
       -parent = @admin_categories.find_by_id(category.ancestry)
       td = parent.name unless parent == nil

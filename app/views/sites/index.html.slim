@@ -11,7 +11,8 @@ table border = 1
   - @lot_active.each do |active|
     tr
       td
-        img src = active.product.pictures.first.avatar
+        -if active.product.pictures.first
+          img src = active.product.pictures.first.avatar
       td = active.product.title
       td = active.price
       td = active.step_price
@@ -29,7 +30,8 @@ table border = 1
   - @lot_started.each do |active|
       tr
         td
-          img src = active.product.pictures.first.avatar
+          -if active.product.pictures.first
+            img src = active.product.pictures.first.avatar
         td = active.product.title
         td = active.price
         td = active.step_price
@@ -45,7 +47,8 @@ table border = 1
   - @lot_finished.each do |active|
       tr
         td
-          img src = active.product.pictures.first.avatar
+          -if active.product.pictures.first
+            img src = active.product.pictures.first.avatar
         td = active.product.title
         td = active.price
         td = active.step_price
