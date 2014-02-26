@@ -5,7 +5,7 @@ class SitesController < ApplicationController
   # GET /sites.json
   def index
     #@sites = Site.all
-    @products = Product.all
+    #@products = Product.all
     @lot_active = Lot.active
     @lot_started = Lot.started
     @lot_finished = Lot.finished

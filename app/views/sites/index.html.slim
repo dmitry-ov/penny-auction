@@ -8,6 +8,7 @@ table border = 1
     th = 'Цена'
     th = 'Шаг цены'
     th = 'Время окончания аукциона'
+    th = 'Подробнее'
   - @lot_active.each do |lot|
     tr
       td
@@ -17,6 +18,7 @@ table border = 1
       td = lot.price
       td = lot.step_price
       td = lot.expire_date
+      td = link_to 'sss', lots_path(lot.id)
 
 
 h5 = "Начнутся"

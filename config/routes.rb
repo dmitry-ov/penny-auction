@@ -1,5 +1,6 @@
 Auction::Application.routes.draw do
 
+  get "lots/show"
   devise_for :users
 
   namespace :admin do
@@ -9,6 +10,8 @@ Auction::Application.routes.draw do
   end
 
   resources :pictures
+
+  get 'lots/:id' => 'lots#id'
 
   root 'sites#index'
 
