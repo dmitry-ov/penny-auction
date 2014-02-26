@@ -28,10 +28,8 @@ class Admin::LotsController < Admin::BaseController
     respond_to do |format|
       if @admin_lot.save
         format.html { redirect_to [:admin, @admin_lot], notice: 'Lot was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @admin_lot }
       else
         format.html { render action: 'new' }
-        format.json { render json: @admin_lot.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -42,10 +40,8 @@ class Admin::LotsController < Admin::BaseController
     respond_to do |format|
       if @admin_lot.update(admin_lot_params)
         format.html { redirect_to [:admin, @admin_lot], notice: 'Lot was successfully updated.' }
-        format.json { head :no_content }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @admin_lot.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -72,6 +68,6 @@ class Admin::LotsController < Admin::BaseController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def admin_lot_params
-    params[:lot].permit(:step_price, :expire_date, :product_id)
+    params[:lot].permit(:step_price, :price, :expire_date, :product_id)
   end
 end
