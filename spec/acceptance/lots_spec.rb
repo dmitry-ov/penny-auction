@@ -13,7 +13,7 @@ feature  'show lot' do
   end
 
   scenario "show lot started" do
-    visit '/lots/1'
+    visit "/lots/#{Lot.first.id}"
     page.should have_content 'Наименование'
     page.should have_content 'Цена'
     page.should have_content 'Изображение'
@@ -24,8 +24,7 @@ feature  'show lot' do
   end
 
   scenario "show lot active" do
-    id = Lot.find_by_step_price(0.03).id
-    visit "/lots/#{id}"
+    visit "/lots/#{Lot.last.id}"
     page.should have_content 'Наименование'
     page.should have_content 'Цена'
     page.should have_content 'Изображение'
