@@ -1,5 +1,5 @@
 class Admin::ProductsController < Admin::BaseController
-  inherit_resources
+    inherit_resources
 
   respond_to :html
   #respond_to :js, only: [:create, :destroy]
