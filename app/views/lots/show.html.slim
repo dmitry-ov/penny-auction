@@ -6,19 +6,20 @@ p = @lot.product.title
 h5 = 'Цена'
 p = @lot.price
 
-
 h5 = 'Изображение'
 -if @lot.product.pictures.first
   img src = @lot.product.pictures.first.avatar
 
-
-h5 = 'шаг цены'
+h5 = 'Шаг цены'
 p = @lot.step_price
 
-h5 = 'Дата начала'
-p = @lot.begin_date
+-if @lot.started?
+  h5 = 'Время начала'
+  p = @lot.begin_date
 
-h5 = 'Дата окончания'
-p = @lot.expire_date
+
+-if @lot.active?
+  h5 = 'Время окончания'
+  p = @lot.expire_date
 
 br

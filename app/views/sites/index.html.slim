@@ -18,7 +18,7 @@ table border = 1
       td = lot.price
       td = lot.step_price
       td = lot.expire_date
-      /td = link_to 'sss', lots_path(lot.id)
+      td = link_to 'Ссылка на аукцион', lot_path(lot)
 
 
 h5 = "Начнутся"
@@ -29,6 +29,7 @@ table border = 1
     th = 'Цена'
     th = 'Шаг цены'
     th = 'Время начала аукциона'
+    th = 'Подробнее'
   - @lot_started.each do |lot|
       tr
         td
@@ -38,6 +39,7 @@ table border = 1
         td = lot.price
         td = lot.step_price
         td = lot.begin_date
+        td = link_to 'Ссылка на аукцион', lot_path(lot)
 
 h5 = "Завершенны"
 table border = 1
@@ -46,6 +48,7 @@ table border = 1
     th = 'Наименование'
     th = 'Цена'
     th = 'Шаг цены'
+    th = 'Подробнее'
   - @lot_finished.each do |lot|
       tr
         td
@@ -54,6 +57,7 @@ table border = 1
         td = lot.product.title
         td = lot.price
         td = lot.step_price
+        td = link_to 'Ссылка на аукцион', lot_path(lot)
 
 
       /td = link_to 'Show', site
