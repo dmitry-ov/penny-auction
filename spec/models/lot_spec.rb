@@ -57,7 +57,7 @@ describe Lot do
       it "past" do
         @lot.begin_date = DateTime.now - 3.day
         @lot.expire_date = DateTime.now - 1.day
-        expect(@lot.started?).to be_false
+        expect(@lot.started?).to be_true
         expect(@lot.active?).to be_false
         expect(@lot.finished?).to be_true
       end
@@ -66,7 +66,7 @@ describe Lot do
         @lot.begin_date = DateTime.now - 1.hour
         @lot.expire_date = DateTime.now + 1.day
         expect(@lot.active?).to be_true
-        expect(@lot.started?).to be_false
+        expect(@lot.started?).to be_true
         expect(@lot.finished?).to be_false
       end
 
@@ -74,7 +74,7 @@ describe Lot do
         @lot.begin_date = DateTime.now + 1.hour
         @lot.expire_date = DateTime.now + 2.day
         expect(@lot.active?).to be_false
-        expect(@lot.started?).to be_true
+        expect(@lot.started?).to be_false
         expect(@lot.finished?).to be_false
       end
     end
@@ -89,7 +89,7 @@ describe Lot do
     end
 
     it "scope started" do
-      @lot.begin_date =  DateTime.now + 1.hour
+      @lot.begin_date =  DateTime.now - 1.hour
       @lot.expire_date = DateTime.now + 1.day
       @lot.save
       expect(Lot.started.size).to eq(1)
