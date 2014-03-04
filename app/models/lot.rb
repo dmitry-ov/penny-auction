@@ -14,6 +14,7 @@ class Lot < ActiveRecord::Base
   scope :started, -> { where("begin_date < now()") }
   scope :active, -> { where("begin_date < now() AND now() < expire_date") }
   scope :finished, -> { where("expire_date < now()") }
+  scope :future, -> { where("begin_date > now() AND now() < expire_date") }
 
 
   def started?
@@ -27,6 +28,11 @@ class Lot < ActiveRecord::Base
 
   def finished?
     self.expire_date < Time.now.utc
+  end
+
+  def future?
+    now = Time.now.utc
+    self.begin_date > now  &&  now < self.expire_date
   end
 
 

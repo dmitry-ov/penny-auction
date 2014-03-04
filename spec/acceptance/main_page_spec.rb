@@ -27,10 +27,8 @@ feature 'User show list of lots' do
     page.should have_content 'Время окончания аукциона'
     page.should have_content 'Шаг цены'
 
-    save_and_open_page
     page.should have_content 'mobile phone'
     page.should have_content 'cellular phone'
     page.should have_content 'radio phone'
-
   end
 end

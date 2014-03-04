@@ -30,7 +30,7 @@ table border = 1
     th = 'Шаг цены'
     th = 'Время начала аукциона'
     th = 'Подробнее'
-  - @lot_started.each do |lot|
+  - @lot_future.each do |lot|
       tr
         td
           -if lot.product.pictures.first

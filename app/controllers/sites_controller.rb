@@ -7,7 +7,7 @@ class SitesController < ApplicationController
     #@sites = Site.all
     #@products = Product.all
     @lot_active = Lot.active
-    @lot_started = Lot.started
+    @lot_future = Lot.future
     @lot_finished = Lot.finished
   end
 
