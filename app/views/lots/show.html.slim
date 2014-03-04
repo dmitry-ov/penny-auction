@@ -14,12 +14,19 @@ h5 = 'Шаг цены'
 p = @lot.step_price
 
 -if @lot.started?
-  h5 = 'Время начала'
+  h5 = 'Запущен'
   p = @lot.begin_date
-
 
 -if @lot.active?
   h5 = 'Время окончания'
   p = @lot.expire_date
+
+-if @lot.finished?
+  h5 = 'Закончен'
+  p = @lot.expire_date
+
+-if !@lot.finished? && !@lot.started?
+  h5 = 'Время начала'
+  p = @lot.begin_date
 
 br
