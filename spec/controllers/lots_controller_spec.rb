@@ -1,12 +1,12 @@
-require 'spec_helper'
-
-describe LotsController do
+#require 'spec_helper'
 #
-#  describe "GET 'show'" do
-#    it "returns http success" do
-#      get 'show'
-#      response.should be_success
-#    end
-#  end
-
-end
+#describe LotsController do
+##
+##  describe "GET 'show'" do
+##    it "returns http success" do
+##      get 'show'
+##      response.should be_success
+##    end
+##  end
+#
+#end

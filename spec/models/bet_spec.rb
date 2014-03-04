@@ -1,14 +1,13 @@
 require 'spec_helper'
 
 describe Bet do
+
     it { should belong_to(:user) }
-    it { should validate_presence_of(:user) }
-
     it { should belong_to(:lot) }
-    it { should validate_presence_of(:lot) }
 
-    it { should validate_presence_of(:time) }
-
+    #it { should validate_presence_of(:user) }
+    #it { should validate_presence_of(:lot) }
+    #it { should validate_presence_of(:time) }
 
     it "user have not bets, then bet not be created" do
       User.create!(email: 'admin@test.com', password: '12345678', password_confirmation: '12345678', admin: false, betscount: 0)
@@ -18,7 +17,6 @@ describe Bet do
       @bet = Bet.new(user: User.first, lot: Lot.first, time: DateTime.now)
       expect(@bet).not_to be_valid
     end
-
 
     pending 'click make bet updates: end time lot and price lot in DB'
     pending 'make bet reduces user.bets_count'

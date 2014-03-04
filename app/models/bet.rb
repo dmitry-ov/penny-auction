@@ -11,8 +11,6 @@ class Bet < ActiveRecord::Base
   private
 
   def user_have_bets
-    if self.user.betscount.zero?
-      errors.add(:user, "user not have bets")
-    end
+    errors.add(:user, "user not have bets") if self.user.betscount.zero?
   end
 end
