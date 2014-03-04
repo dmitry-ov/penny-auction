@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 20140304135454) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "admin",                  default: false
-    t.integer  "betscount"
+    t.integer  "betscount",              default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
