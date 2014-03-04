@@ -5,6 +5,7 @@ class Lot < ActiveRecord::Base
   validates :product, presence: true
 
   validates :step_price, presence: true, numericality: {greater_than_or_equal_to: 0.01}
+  validates :step_time, presence: true, numericality: { greater_than_or_equal_to: 1 }
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 1 }
 
   validates :begin_date, presence: true
@@ -36,6 +37,17 @@ class Lot < ActiveRecord::Base
     now = Time.now.utc
     self.begin_date > now  &&  now < self.expire_date
   end
+
+  def increase_price
+    self.price += self.step_price
+    self.save!
+  end
+
+  def increase_time
+    self.expire_date += self.step_time
+    self.save!
+  end
+
 
   private
 

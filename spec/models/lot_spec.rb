@@ -2,31 +2,33 @@ require 'spec_helper'
 
 describe Lot do
 
-  describe "should have product" do
-    it { should belong_to(:product) }
-  end
-
+  it { should belong_to(:product) }
   it { should have_many(:bets) }
 
-
-  describe "should have step price " do
+  describe "step price " do
     it { should respond_to(:step_price) }
     it { should validate_presence_of(:step_price) }
     it { should validate_numericality_of(:step_price).is_greater_than_or_equal_to BigDecimal.new('0.01') }
   end
 
-  describe "should have price" do
+  describe "price" do
     it { should respond_to(:price) }
     it { should validate_presence_of(:price) }
     it { should validate_numericality_of(:price).is_greater_than_or_equal_to BigDecimal.new('1') }
   end
 
-  describe "should have begin date" do
+  describe "step time" do
+    it { should respond_to(:step_time) }
+    it { should validate_presence_of(:step_time) }
+    it { should validate_numericality_of(:step_time).is_greater_than_or_equal_to(1) }
+  end
+
+  describe "begin date" do
     it { should respond_to(:begin_date) }
     it { should validate_presence_of(:begin_date) }
   end
 
-  describe "should have expire date" do
+  describe "expire date" do
     it { should respond_to(:begin_date) }
     it { should validate_presence_of(:expire_date) }
 
@@ -34,7 +36,7 @@ describe Lot do
       before do
         Category.create!(name: "Телефоны")
         Product.create!(title: 'mobile phone', description: 'new iphone 5s', price: 1234567.89,  category: Category.first)
-        @lot = Lot.new(step_price: 0.02, price: 5.4, product: Product.first)
+        @lot = Lot.new(step_price: 0.02, price: 5.4, product: Product.first, step_time: 1)
       end
 
       it "begin date before expire date" do
@@ -45,7 +47,7 @@ describe Lot do
     end
   end
 
-  describe "should have status" do
+  describe "status" do
     it { should respond_to(:started?) }
     it { should respond_to(:active?) }
     it { should respond_to(:finished?) }
@@ -87,11 +89,11 @@ describe Lot do
   end
 
 
-  describe "should have scope" do
+  describe "scope" do
     before do
       Category.create!(name: "Телефоны")
       Product.create!(title: 'mobile phone', description: 'new iphone 5s', price: 1234567.89, category: Category.first)
-      @lot = Lot.new(step_price: 0.02, price: 5.4, product: Product.first )
+      @lot = Lot.new(step_price: 0.02, price: 5.4, product: Product.first, step_time: 1 )
     end
 
     it "scope started" do
@@ -123,7 +125,19 @@ describe Lot do
     end
   end
 
-  pending "increase price"
-  pending "increase expire_date"
+  it '#increases price' do
+    Category.create!(name: "Телефоны")
+    Product.create!(title: 'mobile phone', description: 'new iphone 5s', price: 1234567.89, category: Category.first)
+    now = DateTime.now
+    @lot = Lot.new(step_time: 1, step_price: 0.02, price: 5.4, product: Product.first, begin_date: now - 1.day, expire_date: now + 1.day)
+    expect { @lot.increase_price }.to change(@lot, :price).by(@lot.step_price)
+  end
 
+  it '#increase expire_date' do
+    Category.create!(name: "Телефоны")
+    Product.create!(title: 'mobile phone', description: 'new iphone 5s', price: 1234567.89, category: Category.first)
+    now = DateTime.now
+    @lot = Lot.new(step_time: 30, step_price: 0.02, price: 5.4, product: Product.first, begin_date: now - 1.day, expire_date: now + 1.day)
+    expect { @lot.increase_time }.to change(@lot, :expire_date).by(@lot.step_time)
+  end
 end
