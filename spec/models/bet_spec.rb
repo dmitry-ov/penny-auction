@@ -13,7 +13,7 @@ describe Bet do
       User.create!(email: 'admin@test.com', password: '12345678', password_confirmation: '12345678', admin: false, betscount: 0)
       Category.create!(name: "electronic")
       Product.create!(title: 'mobile phone', description: 'new iphone', price: 1234567.89, category: Category.first)
-      Lot.create!(step_price: 0.05, price: 15.4, begin_date: DateTime.now - 5.day, expire_date: DateTime.now + 2.day, product: Product.first)
+      Lot.create!(step_time: 2, step_price: 0.05, price: 15.4, begin_date: DateTime.now - 5.day, expire_date: DateTime.now + 2.day, product: Product.first)
       @bet = Bet.new(user: User.first, lot: Lot.first, time: DateTime.now)
       expect(@bet).not_to be_valid
     end
