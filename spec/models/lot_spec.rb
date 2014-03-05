@@ -60,6 +60,7 @@ describe Lot do
         expect(@lot.started?).to be_true
         expect(@lot.active?).to be_false
         expect(@lot.finished?).to be_true
+        expect(@lot.future?).to be_false
       end
 
       it "now" do
@@ -68,6 +69,7 @@ describe Lot do
         expect(@lot.active?).to be_true
         expect(@lot.started?).to be_true
         expect(@lot.finished?).to be_false
+        expect(@lot.future?).to be_false
       end
 
       it "future" do
@@ -76,6 +78,7 @@ describe Lot do
         expect(@lot.active?).to be_false
         expect(@lot.started?).to be_false
         expect(@lot.finished?).to be_false
+        expect(@lot.future?).to be_true
       end
     end
   end
@@ -107,6 +110,13 @@ describe Lot do
       @lot.expire_date = DateTime.now - 1.hour
       @lot.save
       expect(Lot.finished.size).to eq(1)
+      end
+
+    it "scope future" do
+      @lot.begin_date =  DateTime.now + 1.day
+      @lot.expire_date = DateTime.now + 2.hour
+      @lot.save
+      expect(Lot.future.size).to eq(1)
     end
   end
 
