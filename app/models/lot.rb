@@ -1,5 +1,7 @@
 class Lot < ActiveRecord::Base
   belongs_to :product
+  has_many :bets
+
   validates :product, presence: true
 
   validates :step_price, presence: true, numericality: {greater_than_or_equal_to: 0.01}

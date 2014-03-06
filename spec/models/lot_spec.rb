@@ -6,6 +6,9 @@ describe Lot do
     it { should belong_to(:product) }
   end
 
+  it { should have_many(:bets) }
+
+
   describe "should have step price " do
     it { should respond_to(:step_price) }
     it { should validate_presence_of(:step_price) }
