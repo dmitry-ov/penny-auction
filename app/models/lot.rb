@@ -37,7 +37,6 @@ class Lot < ActiveRecord::Base
     self.begin_date > now  &&  now < self.expire_date
   end
 
-
   private
 
   def begin_date_less_expire_date

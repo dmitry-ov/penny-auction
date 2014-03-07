@@ -123,4 +123,7 @@ describe Lot do
     end
   end
 
+  pending "increase price"
+  pending "increase expire_date"
+
 end
