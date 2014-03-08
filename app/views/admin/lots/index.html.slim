@@ -7,6 +7,8 @@ table border = 1
     th = "Дата начала"
     th = "Дата окончания"
     th = "Продукт"
+    th = "Шаг времени"
+
 
   -@admin_lots.each do |lot|
     tr
@@ -16,6 +18,7 @@ table border = 1
       td = lot.expire_date
       - parent = @admin_products.find_by_id(lot.product_id)
       td = parent.title unless parent == nil
+      td = lot.step_time
       td = link_to 'Show', admin_lot_path(lot)
       td = link_to 'Edit', edit_admin_lot_path(lot)
       td = link_to 'Destroy', admin_lot_path(lot), data: {:confirm => 'Are you sure?'}, :method => :delete

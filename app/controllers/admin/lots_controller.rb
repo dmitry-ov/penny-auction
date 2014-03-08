@@ -68,6 +68,6 @@ class Admin::LotsController < Admin::BaseController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def admin_lot_params
-    params[:lot].permit(:step_price, :price, :expire_date, :product_id)
+    params[:lot].permit(:step_time, :step_price, :price, :begin_date, :expire_date, :product_id)
   end
 end

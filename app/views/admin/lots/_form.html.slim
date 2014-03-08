@@ -13,17 +13,17 @@
     = f.label :price
     = f.text_field :price, :class => "form-control"
   .form-group
+      = f.label :begin_date
+      = f.text_field :begin_date, :class => "form-control"
+  .form-group
     = f.label :expire_date
     = f.text_field :expire_date, :class => "form-control"
   .form-group
+    = f.label :step_time
+    = f.text_field :step_time, :class => "form-control"
+  .form-group
     = f.label :product
-    /= f.text_field :expire_date, :class => "form-control"
     = f.select :product_id, (@admin_products.map{|c| [c.title, c.id] } unless (@admin_products == nil)), {:include_blank => true}
-
-
-  /.form-group
-      = f.label :category_id
-      = f.select :category_id, (@admin_categories.map{|c| [c.name, c.id] } unless (@admin_categories == nil)), {:include_blank => true}
 
   .actions
     = f.submit 'Save'

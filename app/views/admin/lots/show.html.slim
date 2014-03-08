@@ -3,11 +3,17 @@ p#notice = notice
 h5 = 'Шаг цены'
 p = @admin_lot.step_price
 
+h5 = 'Цена'
+p = @admin_lot.price
+
 h5 = 'Дата начала'
 p = @admin_lot.begin_date
 
 h5 = 'Дата окончания'
 p = @admin_lot.expire_date
+
+h5 = 'Шаг времени'
+p = @admin_lot.step_time
 
 - product = @admin_products.find_by_id(@admin_lot.product_id)
 - unless product == nil
