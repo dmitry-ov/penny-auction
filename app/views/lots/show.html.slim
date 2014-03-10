@@ -13,7 +13,6 @@ h5 = 'Изображение'
 h5 = 'Шаг цены'
 p = @lot.step_price
 
-
 -if @lot.active?
   h5 = 'Время окончания'
   p = @lot.expire_date
@@ -25,5 +24,7 @@ p = @lot.step_price
 -if @lot.finished?
   h5 = 'Закончен'
   p = @lot.expire_date
+
+
 
 br
