@@ -1,30 +1,34 @@
 p#notice = notice
 
-h5 = 'Наименование'
-p = @lot.product.title
+div id="lot_#{@lot.id}"
+  h5 = 'Наименование'
+  p = @lot.product.title
 
-h5 = 'Цена'
-p = @lot.price
+  h5 = 'Цена'
+  p = @lot.price
 
-h5 = 'Изображение'
--if @lot.product.pictures.first
-  img src = @lot.product.pictures.first.avatar
+  h5 = 'Изображение'
+  -if @lot.product.pictures.first
+    img src = @lot.product.pictures.first.avatar
 
-h5 = 'Шаг цены'
-p = @lot.step_price
+  h5 = 'Шаг цены'
+  p = @lot.step_price
 
--if @lot.active?
-  h5 = 'Время окончания'
-  p = @lot.expire_date
+  -if @lot.active?
+    /h5 = 'Время окончания'
+    /p = @lot.expire_date
+    p End Time:
+    p.end_time= @lot.expire_date
 
--if @lot.future?
-  h5 = 'Время начала'
-  p = @lot.begin_date
+  -if @lot.future?
+    h5 = 'Время начала'
+    p = @lot.begin_date
 
--if @lot.finished?
-  h5 = 'Закончен'
-  p = @lot.expire_date
+  -if @lot.finished?
+    h5 = 'Закончен'
+    p = @lot.expire_date
 
+p= button_to 'Make a Bet!', lot_bets_path(lot_id: @lot.id), remote: true
 
 
 br

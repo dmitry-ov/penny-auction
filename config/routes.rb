@@ -10,11 +10,17 @@ Auction::Application.routes.draw do
   end
 
   resources :pictures
-  resources :lots, only: [:show]
+
+  resources :lots, only: [:show] do
+    resource  :bets, only: [:create]
+  end
+
   #resources :comments, only: [:show, :edit, :update, :destroy]
 
 
   #get 'lots/:id' => 'lots#id'
+
+  resources :sites, only: [:index]
 
   root 'sites#index'
 

@@ -10,14 +10,14 @@ table border = 1
     th = 'Время окончания аукциона'
     th = 'Подробнее'
   - @lot_active.each do |lot|
-    tr
+    tr id="lot_#{lot.id}"
       td
         -if lot.product.pictures.first
           img src = lot.product.pictures.first.avatar
       td = lot.product.title
       td = lot.price
       td = lot.step_price
-      td = lot.expire_date
+      td.end_time = lot.expire_date
       td = link_to 'Ссылка на аукцион', lot_path(lot)
 
 
@@ -31,7 +31,7 @@ table border = 1
     th = 'Время начала аукциона'
     th = 'Подробнее'
   - @lot_future.each do |lot|
-      tr
+      tr id="lot_#{lot.id}"
         td
           -if lot.product.pictures.first
             img src = lot.product.pictures.first.avatar
@@ -50,7 +50,7 @@ table border = 1
     th = 'Шаг цены'
     th = 'Подробнее'
   - @lot_finished.each do |lot|
-      tr
+      tr id="lot_#{lot.id}"
         td
           -if lot.product.pictures.first
             img src = lot.product.pictures.first.avatar
@@ -63,3 +63,5 @@ table border = 1
       /td = link_to 'Show', site
       /td = link_to 'Edit', edit_site_path(site)
       /td = link_to 'Destroy', site, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+=subscribe_to '/lots/update'
