@@ -1,11 +1,5 @@
 $('p.end_time').html('<%= j resource.lot.expire_date.to_s %>');
 
 <% publish_to '/lots/update' do %>
-//  $('h3').html('<%= j resource.lot.expire_date.to_s %>')
-//  $('lot_'+ <%= resource.lot.id %>+ 'end_time').html('<%= j resource.lot.expire_date.to_s %>')
-  $('#lot_3').html('<%= j resource.lot.expire_date.to_s %>')
-
-
-
-
+  $('#lot_'+ <%= resource.lot.id %> + ' .end_time').html('<%= j resource.lot.expire_date.to_s %>')
 <% end %>

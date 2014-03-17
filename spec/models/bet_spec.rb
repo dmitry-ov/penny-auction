@@ -10,7 +10,6 @@ describe Bet do
   describe "validations" do
     it { should validate_presence_of(:user) }
     it { should validate_presence_of(:lot) }
-    it { should validate_presence_of(:time) }
   end
 
   it "user have not bets, then bet not be created" do
@@ -18,7 +17,7 @@ describe Bet do
     Category.create!(name: "electronic")
     Product.create!(title: 'mobile phone', description: 'new iphone', price: 1234567.89, category: Category.first)
     Lot.create!(step_time: 2, step_price: 0.05, price: 15.4, begin_date: DateTime.now - 5.day, expire_date: DateTime.now + 2.day, product: Product.first)
-    @bet = Bet.new(user: User.first, lot: Lot.first, time: DateTime.now)
+    @bet = Bet.new(user: User.first, lot: Lot.first)
     expect(@bet).not_to be_valid
   end
 
