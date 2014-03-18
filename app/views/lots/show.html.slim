@@ -15,9 +15,7 @@ div id="lot_#{@lot.id}"
   p = @lot.step_price
 
   -if @lot.active?
-    /h5 = 'Время окончания'
-    /p = @lot.expire_date
-    p End Time:
+    h5 = 'Время окончания'
     p.end_time= @lot.expire_date
 
   -if @lot.future?
@@ -29,6 +27,5 @@ div id="lot_#{@lot.id}"
     p = @lot.expire_date
 
 p= button_to 'Make a Bet!', lot_bets_path(lot_id: @lot.id), remote: true
-
 
 br

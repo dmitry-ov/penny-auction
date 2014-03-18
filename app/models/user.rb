@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  validates :betscount, presence: true
+  validates :betscount, presence: true, numericality: { greater_than_or_equal_to: 0 }
 
   def is_admin
     true if admin

@@ -7,13 +7,12 @@ feature "Admin can manage lots", %q{
  } do
 
   let(:path) { admin_lots_path }
-  let(:name) { 'Телефоны' }
   let(:begindate) { DateTime.now - 10.day }
   let(:expiredate) { DateTime.now + 10.day }
 
   background do
-    User.create!(email: 'admin@test.com', password: '12345678', password_confirmation: '12345678', admin: true)
-    Category.create!(name: name)
+    User.create!(email: 'admin@test.com', password: '12345678', password_confirmation: '12345678', admin: true, betscount: 0)
+    Category.create!(name: 'Телефоны')
     Product.create!(title: 'mobile phone', description: 'new iphone', price: 1234567.89, category: Category.first)
     Product.create!(title: 'television', description: 'from Samsung', price: 4567.89, category: Category.first)
     Lot.create!(step_time: 60, step_price: 0.05, price: 555.44, begin_date: begindate, expire_date: expiredate, product: Product.first )

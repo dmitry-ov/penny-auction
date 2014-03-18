@@ -12,7 +12,7 @@ feature "Admin can manage categories", %q{
   let(:password) {'12345678'}
 
   background do
-    User.create!(email: email, password: password, password_confirmation: password, admin: true)
+    User.create!(email: email, password: password, password_confirmation: password, admin: true, betscount: 0)
     Category.create!(name: name)
   end
 

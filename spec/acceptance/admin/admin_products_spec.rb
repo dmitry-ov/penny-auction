@@ -13,7 +13,7 @@ feature "Admin can manage products", %q{
   let(:price) { 1234567.89 }
 
   background do
-    User.create!(email: 'admin@test.com', password: '12345678', password_confirmation: '12345678', admin: true)
+    User.create!(email: 'admin@test.com', password: '12345678', password_confirmation: '12345678', admin: true, betscount: 0)
     Category.create!(name: name)
     Product.create!(title: title, description: description, price: price, category: Category.first)
   end
