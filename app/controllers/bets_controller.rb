@@ -4,9 +4,9 @@ class BetsController < InheritedResources::Base
   respond_to :js
   actions :create
 
-
   def create
     @bet = Bet.new(lot: parent, user: current_user)
     create!
   end
+
 end

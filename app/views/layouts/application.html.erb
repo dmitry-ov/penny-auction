@@ -8,6 +8,7 @@
     <% if user_signed_in? %>
         Signed in as <%= current_user.email %>. <br>
         <%= link_to 'Sign out', destroy_user_session_path %>
+        <p><%=  'Bets ' +  current_user.betscount.to_s %></p>
     <% end %>
   </div>
 
