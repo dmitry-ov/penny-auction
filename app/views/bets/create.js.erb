@@ -1,5 +1,8 @@
 $('p.end_time').html('<%= j resource.lot.expire_date.to_s %>');
+$('p.price').html('<%= j resource.lot.price.to_s %>');
 
 <% publish_to '/lots/update' do %>
-  $('#lot_'+ <%= resource.lot.id %> + ' .end_time').html('<%= j resource.lot.expire_date.to_s %>')
+  $('#lot_'+ <%= resource.lot.id %> + ' .end_time').html('<%= j resource.lot.expire_date.to_s %>') // время
+  $('#lot_'+ <%= resource.lot.id %> + ' .price').html('<%= j resource.lot.price.to_s %>') // цена
+
 <% end %>

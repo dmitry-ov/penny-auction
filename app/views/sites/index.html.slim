@@ -15,7 +15,7 @@ table border = 1
         -if lot.product.pictures.first
           img src = lot.product.pictures.first.avatar
       td = lot.product.title
-      td = lot.price
+      td.price = lot.price
       td = lot.step_price
       td.end_time = lot.expire_date
       td = link_to 'Ссылка на аукцион', lot_path(lot)

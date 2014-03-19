@@ -5,7 +5,7 @@ div id="lot_#{@lot.id}"
   p = @lot.product.title
 
   h5 = 'Цена'
-  p = @lot.price
+  p.price = @lot.price
 
   h5 = 'Изображение'
   -if @lot.product.pictures.first
