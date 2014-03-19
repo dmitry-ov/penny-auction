@@ -19,7 +19,6 @@ feature  'show lot' do
     expect(page).to have_content 'Цена'
     expect(page).to have_content 'Изображение'
     expect(page).to have_content 'Шаг цены'
-    save_and_open_page
     expect(page).to have_content 'Время окончания'
     expect(page).to have_content title
     expect(page).to have_content price

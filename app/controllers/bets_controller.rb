@@ -9,6 +9,4 @@ class BetsController < InheritedResources::Base
     @bet = Bet.new(lot: parent, user: current_user)
     create!
   end
-
-
 end
