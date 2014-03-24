@@ -12,7 +12,7 @@ class Bet < ActiveRecord::Base
   def update_lot_and_time
     self.lot.increase_price
     self.lot.increase_time
-    self.user.decrease_betscount
+    self.user.reduce_betscount
   end
 
   private

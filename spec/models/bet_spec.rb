@@ -5,6 +5,7 @@ describe Bet do
   let(:user) { User.create!(email: 'admin@test.com', password: '12345678', password_confirmation: '12345678', admin: false, betscount: 0) }
   let(:category) { Category.create!(name: "electronic") }
   let(:product) { Product.create!(title: 'mobile phone', description: 'new iphone', price: 1234567.89, category: category) }
+  let(:lot) { Lot.create!(step_time: 2, step_price: 0.05, price: 15.4, begin_date: DateTime.now - 5.day, expire_date: DateTime.now + 2.day, product: product) }
 
   it { should belong_to(:user) }
   it { should belong_to(:lot) }
@@ -14,17 +15,39 @@ describe Bet do
     it { should validate_presence_of(:lot) }
   end
 
-  it "user have not bets, then bet not be created" do
-    Lot.create!(step_time: 2, step_price: 0.05, price: 15.4, begin_date: DateTime.now - 5.day, expire_date: DateTime.now + 2.day, product: product)
-    @bet = Bet.create!(user: user, lot: Lot.first)
-    puts @bet.user.betscount
-    expect(@bet).to be_valid
+  describe "user bets" do
+    it "have count of bets, then bet be created" do
+      user.update(betscount: 1)
+      @bet = Bet.new(user: user, lot: lot)
+      expect(@bet).to be_valid
+    end
+
+    it "not have count of bets, then bet not be created" do
+      @bet = Bet.new(user: user, lot: lot)
+      expect(@bet).not_to be_valid
+    end
+
+    context "after create bet" do
+      before do
+        user.update(betscount: 1)
+      end
+
+      it "change user.bets_count" do
+        expect { Bet.create(user: user, lot: lot) }.to change(user, :betscount)
+      end
+
+      it "change lot.price" do
+        expect { Bet.create(user: user, lot: lot) }.to change(lot, :price)
+      end
+
+      it "change lot.expire_date" do
+        expect { Bet.create(user: user, lot: lot) }.to change(lot, :expire_date)
+      end
+    end
+
   end
 
-  pending "click make bet updates: end time lot and price lot in DB"
-  pending 'make bet reduces user.bets_count'
   pending 'make bets click redirect to page login'
-  pending 'user have bets before make bet. if bets_count = 0 bet not make'
   pending 'custom validates - message yot have not bets'
 
 end
