@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   validates :betscount, presence: true, numericality: { greater_than_or_equal_to: 0 }
 
-  def decrease_betscount
+  def reduce_betscount
     self.betscount += -1
     self.save!
   end
