@@ -1,6 +1,8 @@
+
 $('p.end_time').html('<%= j resource.lot.expire_date.to_s %>');
 $('p.price').html('<%= j resource.lot.price.to_s %>');
 $('p.bets').html('<%= j "Bets " + resource.user.betscount.to_s %>');
+
 
 <% publish_to '/lots/update' do %>
   $('#lot_'+ <%= resource.lot.id %> + ' .end_time').html('<%= j resource.lot.expire_date.to_s %>') // время
@@ -9,5 +11,5 @@ $('p.bets').html('<%= j "Bets " + resource.user.betscount.to_s %>');
 <% end %>
 
 
-$('p.alert').html('<%= j resource.errors.first.to_s unless resource.errors.empty?%>');
+$('p.alert').html('<%= j resource.errors[:user].first.to_s unless resource.errors[:user].first.empty?%>');
 

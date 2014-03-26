@@ -18,6 +18,6 @@ class Bet < ActiveRecord::Base
   private
 
   def user_have_bets
-    errors.add(:user, "user not have bets") if self.user.present? && self.user.betscount.zero?
+    errors.add(:user, "У вас нет ставок") if self.user.present? && self.user.betscount.zero?
   end
 end

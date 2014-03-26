@@ -22,6 +22,7 @@ feature  'show lot' do
     expect(page).to have_content 'Время окончания'
     expect(page).to have_content title
     expect(page).to have_content price
+    expect(page).to have_button 'Make a Bet!'
   end
 
   scenario "show lot future" do
