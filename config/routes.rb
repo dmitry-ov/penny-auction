@@ -1,6 +1,5 @@
 Auction::Application.routes.draw do
 
-  get "lots/show"
   devise_for :users
 
   namespace :admin do
@@ -11,19 +10,11 @@ Auction::Application.routes.draw do
 
   resources :pictures
 
-  resources :lots, only: [:show] do
+  resources :lots, only: [:show, :index] do
     resource  :bets, only: [:create]
   end
 
-  #resources :comments, only: [:show, :edit, :update, :destroy]
-
-
-  #get 'lots/:id' => 'lots#id'
-
-  resources :sites, only: [:index]
-
-  root 'sites#index'
-
+  root 'lots#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
