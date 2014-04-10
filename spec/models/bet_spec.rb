@@ -45,7 +45,23 @@ describe Bet do
       end
     end
 
-  end
+    describe "try stubs" do
+
+      let(:bet) {Bet.new(user: user, lot: lot)}
+
+      before do
+        user.update(betscount: 1)
+      end
+
+      it "bet.save! call lot.increase_price" do
+        expect(lot).to receive(:increase_price)
+        bet.save!
+      end
+
+    end
+
+    end
+
 
   pending 'make bets click redirect to page login'
   pending 'custom validates - message yot have not bets'
